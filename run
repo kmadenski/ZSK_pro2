@@ -1,0 +1,15 @@
+#!/bin/bash
+g++ main.cpp -o main -pthread -std=c++11
+
+if ipcs | grep -q '0x00001234'; then
+  ipcrm -M 0x1234
+fi
+
+for i in {1..8}
+do
+  ./main &
+done
+
+
+
+
